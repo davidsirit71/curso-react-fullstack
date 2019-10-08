@@ -1,29 +1,10 @@
-const express = require("express");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const keys = require("./config/keys");
+const express = require('express');
+// const passportConfig = require('./server/services/passport'); // mejor como sigue
+require('./services/passport');
 
 const app = express(); //express como una funcion
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback"
-    },
-    accesToken => {
-      console.log(accesToken);
-    }
-  )
-);
-        //passport sabe interno que 'google' se refiere a lo de arriba
-app.get(
-  "/auth/google",
-  passport.authenticate('google', {
-    scope: ["profile", "email"]
-  })
-);
+require('./routes/authRoutes')(app); // hacer require retorna una funcion que luego llama a la funcion app
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
