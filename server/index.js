@@ -1,6 +1,10 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 // const passportConfig = require('./server/services/passport'); // mejor como sigue
 require('./services/passport');
+
+mongoose.connect(keys.mongoURI);
 
 const app = express(); //express como una funcion
 
