@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-// const passportConfig = require('./server/services/passport'); // mejor como sigue
-require('./services/passport');
+require('./models/User'); // el orden de estas sentencias es importante
+require('./services/passport');  // const passportConfig = ... no es necesario, en este caso
 
 mongoose.connect(keys.mongoURI);
 
