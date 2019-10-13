@@ -6,7 +6,7 @@ node_modules/
 # testing
 
 # production & development
-keys.js
+dev.js
 
 # misc
 heroku-help.txt
